@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Platformer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #222;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 20px 0 8px;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: 20px auto;
+      background: linear-gradient(#76c7ff, #d9f5ff);
+      border: 4px solid white;
+      max-width: 95vw;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simple Platformer</h1>
+  <p>Move: A/D or Arrow Keys | Jump: W, Arrow Up, or Space</p>
+
+  <canvas id="game" width="800" height="450"></canvas>
+  <button onclick="restartGame()">Restart</button>
+
+  <script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+
+    const keys = {};
+
+    document.addEventListener("keydown", (event) => {
+      keys[event.key.toLowerCase()] = true;
+
+      if (
+        event.key === " " ||
+        event.key === "ArrowUp"
+      ) {
+        event.preventDefault();
+      }
+    });
+
+    document.addEventListener("keyup", (event) => {
+      keys[event.key.toLowerCase()] = false;
+    });
+
+    const playerStart = {
+      x: 60,
+      y: 350
+    };
+
+    const player = {
+      x: playerStart.x,
+      y: playerStart.y,
+      width: 30,
+      height: 40,
+      speed: 5,
+      jumpPower: 13,
+      velocityX: 0,
+      velocityY: 0,
+      grounded: false,
+      color: "#e63946"
+    };
+
+    const gravity = 0.6;
+
+    const platforms = [
+      { x: 0,   y: 410, width: 800, height: 40 },
+      { x: 120, y: 330, width: 150, height: 20 },
+      { x: 350, y: 270, width: 150, height: 20 },
+      { x: 590, y: 210, width: 140, height: 20 },
+      { x: 480, y: 370, width: 120, height: 20 }
+    ];
+
+    const goal = {
+      x: 700,
+      y: 155,
+      width: 30,
+      height: 55
+    };
+
+    let gameWon = false;
+    let gameOver = false;
+
+    function resetPlayer() {
+      player.x = playerStart.x;
+      player.y = playerStart.y;
+      player.velocityX = 0;
+      player.velocityY = 0;
+    }
+
+    function restartGame() {
+      resetPlayer();
+      gameWon = false;
+      gameOver = false;
+    }
+
+    function isColliding(a, b) {
+      return (
+        a.x < b.x + b.width &&
+        a.x + a.width > b.x &&
+        a.y < b.y + b.height &&
+        a.y + a.height > b.y
+      );
+    }
+
+    function update() {
+      if (gameWon || gameOver) return;
+
+      player.velocityX = 0;
+
+      if (keys["a"] || keys["arrowleft"]) {
+        player.velocityX = -player.speed;
+      }
+
+      if (keys["d"] || keys["arrowright"]) {
+        player.velocityX = player.speed;
+      }
+
+      const jumpPressed =
+        keys["w"] ||
+        keys["arrowup"] ||
+        keys[" "];
+
+      if (jumpPressed && player.grounded) {
+        player.velocityY = -player.jumpPower;
+        player.grounded = false;
+      }
+
+      // Horizontal movement
+      player.x += player.velocityX;
+
+      // Keep player inside the screen
+      if (player.x < 0) player.x = 0;
+     
