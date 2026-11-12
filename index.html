@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sofste – small tools that do one thing</title>
+<meta name="description" content="Free little web tools. No sign-up, nothing tracked.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
+<style>
+  :root {
+    --bg: #EEF1FB;
+    --surface: #FFFFFF;
+    --ink: #1C2340;
+    --muted: #5A6385;
+    --line: #D3D9EE;
+    --cobalt: #3046D9;
+    --sun: #FFD23F;
+    --round: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", Quicksand, Comfortaa, Nunito, system-ui, sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #151A2E;
+      --surface: #1E2540;
+      --ink: #E8ECFA;
+      --muted: #A0A8C8;
+      --line: #313A5C;
+      --cobalt: #8A9BFF;
+      --sun: #FFD23F;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 var(--body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--cobalt); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: min(760px, 100% - 2.5rem); margin-inline: auto; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: clamp(3rem, 10vw, 6.5rem) 0 2.5rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .word { display: flex; gap: clamp(.25rem, 1.2vw, .6rem); perspective: 600px; }
+  .tile {
+    position: relative;
+    width: clamp(3rem, 13vw, 6.5rem);
+    aspect-ratio: 4 / 5;
+    border: 0; padding: 0; background: none; cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform .45s cubic-bezier(.3, 1.4, .5, 1);
+  }
+  .tile.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    border-radius: 18%;
+    backface-visibility: hidden;
+    font-family: var(--round);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 9vw, 4.6rem);
+    line-height: 1;
+  }
+  .front { background: var(--cobalt); color: var(--bg); }
+  .back  { background: var(--sun); transform: rotateY(180deg); font-size: clamp(1.8rem, 7.5vw, 3.8rem); }
+
+  .tagline {
+    margin-top: 1.6rem;
+    font-family: var(--round);
+    font-size: clamp(1.3rem, 3.4vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    max-width: 22ch;
+  }
+  .sub { margin-top: .6rem; color: var(--muted); max-width: 48ch; }
+  .hint { margin-top: .4rem; color: var(--muted); font-size: .85rem; }
+
+  /* ---------- Tools ---------- */
+  .tools { padding: 1rem 0 4rem; flex: 1; }
+  .tools-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tools-head h2 { font-family: var(--round); font-size: 1.35rem; }
+  .search {
+    font: inherit; font-size: .95rem; color: var(--ink);
+    background: var(--surface); border: 2px solid var(--line); border-radius: 999px;
+    padding: .45rem 1rem; width: min(240px, 100%);
+  }
+  .search:focus { border-color: var(--cobalt); outline: none; }
+
+  .list { list-style: none; padding: 0; border-top: 2px solid var(--line); }
+  .list li { border-bottom: 2px solid var(--line); }
+
+  .tool {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.1rem .5rem;
+    text-decoration: none;
+    border-radius: 14px;
+  }
+  a.tool:hover { background: var(--surface); }
+  a.tool:hover .glyph { transform: rotate(-8deg) scale(1.08); }
+  .glyph {
+    width: 3.2rem; height: 3.2rem; display: grid; place-items: center;
+    font-size: 1.8rem; background: var(--sun); border-radius: 30%;
+    transition: transform .25s ease;
+  }
+  .tool h3 { font-family: var(--round); font-size: 1.15rem; line-height: 1.2; }
+  .tool p { color: var(--muted); font-size: .95rem; margin-top: .15rem; }
+  .go { font-weight: 600; color: var(--cobalt); white-space: nowrap; }
+
+  .tool.soon { opacity: .65; }
+  .tool.soon .glyph { background: transparent; border: 2px dashed var(--line); }
+  .tool.soon .go { color: var(--muted); font-weight: 500; }
+
+  .empty { padding: 1.5rem .5rem; color: var(--muted); }
+
+  footer { padding: 1.5rem 0 2rem; color: var(--muted); font-size: .85rem; }
+
+  @media (max-width: 480px) {
+    .tool { grid-template-columns: auto 1fr; }
+    .go { grid-column: 2; font-size: .9rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile, .glyph { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <h1 class="sr-only">sofste</h1>
+  <div class="word" id="word" aria-hidden="true"></div>
+  <p class="tagline">Small tools that do one thing.</p>
+  <p class="sub">Free to use, right in your browser. No sign-up, and nothing you type is stored or tracked.</p>
+  <p class="hint">Tap a letter to see its emoji.</p>
+</header>
+
+<main class="tools wrap">
+  <div class="tools-head">
+    <h2>Tools</h2>
+    <input class="search" id="search" type="search" placeholder="Find a tool" aria-label="Find a tool">
+  </div>
+  <ul class="list" id="list"></ul>
+</main>
+
+<footer class="wrap">
+  <p>© <span id="year"></span> sofste.online</p>
+</footer>
+
+<script>
+  /* =========================================================
+     ADD YOUR TOOLS HERE
+     - emoji: the icon shown on the left
+     - name / desc: plain words, what the tool does
+     - href: link to the tool's page (e.g. "emoji/" = /emoji/index.html)
+     - soon: true shows it greyed out as "Coming soon" (no link)
+     ========================================================= */
+  const TOOLS = [
+    {
+      emoji: "🧮",
+      name: "Calculator",
+      desc: "Quick sums right in your browser.",
+      href: "calculator.html"
+    },
+    {
+      emoji: "🧰",
+      name: "More tools on the way",
+      desc: "New tools get added here as they're built.",
+      soon: true
+    }
+  ];
+
+  /* ---------- Hero letters ---------- */
+  const LETTERS = [
+    ["s", "🐍"], ["o", "🍩"], ["f", "🦊"], ["s", "⭐"], ["t", "🌮"], ["e", "🥚"]
+  ];
+  const word = document.getElementById("word");
+  const tiles = LETTERS.map(([letter, emoji]) => {
+    const b = document.createElement("button");
+    b.className = "tile";
+    b.type = "button";
+    b.tabIndex = -1;
+    b.innerHTML = `<span class="face front">${letter}</span><span class="face back">${emoji}</span>`;
+    b.addEventListener("click", () => b.classList.toggle("flipped"));
+    word.appendChild(b);
+    return b;
+  });
+
+  // One moment on load: the word ripples into emojis and back.
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!calm) {
+    tiles.forEach((t, i) => {
+      setTimeout(() => t.classList.add("flipped"), 350 + i * 110);
+      setTimeout(() => t.classList.remove("flipped"), 1500 + i * 110);
+    });
+  }
+
+  /* ---------- Tool list ---------- */
+  const list = document.getElementById("list");
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  function render(filter = "") {
+    const q = filter.trim().toLowerCase();
+    const shown = TOOLS.filter(t => !q || (t.name + " " + t.desc).toLowerCase().includes(q));
+    if (!shown.length) {
+      list.innerHTML = `<li class="empty">No tool matches “${esc(filter)}”. Try a shorter word.</li>`;
+      return;
+    }
+    list.innerHTML = shown.map(t => {
+      const inner = `
+        <span class="glyph" aria-hidden="true">${t.emoji}</span>
+        <span><h3>${esc(t.name)}</h3><p>${esc(t.desc)}</p></span>
+        <span class="go">${t.soon ? "Coming soon" : "Open"}</span>`;
+      return t.soon
+        ? `<li><div class="tool soon">${inner}</div></li>`
+        : `<li><a class="tool" href="${esc(t.href)}">${inner}</a></li>`;
+    }).join("");
+  }
+
+  document.getElementById("search").addEventListener("input", e => render(e.target.value));
+  document.getElementById("year").textContent = new Date().getFullYear();
+  render();
+</script>
+</body>
+</html>
