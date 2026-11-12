@@ -229,6 +229,20 @@
   document.getElementById("search").addEventListener("input", e => render(e.target.value));
   document.getElementById("year").textContent = new Date().getFullYear();
   render();
+  const TOOLS = [
+  {
+    emoji: "🧮",
+    name: "Calculator",
+    desc: "Quick sums right in your browser.",
+    href: "calculator.html"
+  },
+  {
+    emoji: "🧰",
+    name: "More tools on the way",
+    desc: "New tools get added here as they're built.",
+    soon: true
+  }
+];
 </script>
 </body>
 </html>
