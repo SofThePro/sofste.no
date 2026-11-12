@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page: #d9dccf;
+    --body: #3d4a43;
+    --body-edge: #2c3631;
+    --lcd: #b9c6a4;
+    --lcd-ink: #1f2a1c;
+    --lcd-dim: #55634d;
+    --key: #ecebe3;
+    --key-ink: #26302b;
+    --key-shadow: #a9ab9e;
+    --op: #5d6f63;
+    --op-ink: #f2f3ec;
+    --op-shadow: #26302b;
+    --eq: #e0a92e;
+    --eq-ink: #2a2310;
+    --eq-shadow: #9a7317;
+    --focus: #e0a92e;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #161a17;
+      --body: #2b332e;
+      --body-edge: #1d2320;
+      --lcd: #9fae8a;
+      --key: #454f49;
+      --key-ink: #eef0e8;
+      --key-shadow: #1a1f1c;
+      --op: #627567;
+      --op-shadow: #1a1f1c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #161a17;
+    --body: #2b332e;
+    --body-edge: #1d2320;
+    --lcd: #9fae8a;
+    --key: #454f49;
+    --key-ink: #eef0e8;
+    --key-shadow: #1a1f1c;
+    --op: #627567;
+    --op-shadow: #1a1f1c;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    background: var(--page);
+    font-family: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 1.5rem 1rem;
+  }
+  .calc {
+    width: 100%;
+    max-width: 22rem;
+    background: var(--body);
+    border-radius: 1.75rem 1.75rem 2.25rem 2.25rem;
+    padding: 1.4rem 1.2rem 1.5rem;
+    box-shadow: 0 0.5rem 0 var(--body-edge), 0 1.5rem 2.5rem rgba(20, 28, 22, 0.35);
+  }
+  .screen {
+    background: var(--lcd);
+    border-radius: 0.6rem;
+    padding: 0.8rem 1rem 0.7rem;
+    margin-bottom: 1.3rem;
+    box-shadow: inset 0 0.2rem 0.5rem rgba(0, 0, 0, 0.25);
+    font-family: "Chivo Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    text-align: right;
+    overflow: hidden;
+  }
+  .expr {
+    color: var(--lcd-dim);
+    font-size: 0.95rem;
+    min-height: 1.4em;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .expr::-webkit-scrollbar { display: none; }
+  .result {
+    color: var(--lcd-ink);
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    transition: font-size 0.1s;
+  }
+  .result::-webkit-scrollbar { display: none; }
+  .result.long { font-size: 1.8rem; }
+  .result.error { font-size: 1.4rem; }
+  .keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+  }
+  button {
+    font: inherit;
+    font-size: 1.35rem;
+    font-weight: 500;
+    border: 0;
+    border-radius: 0.9rem;
+    height: 3.6rem;
+    cursor: pointer;
+    background: var(--key);
+    color: var(--key-ink);
+    box-shadow: 0 0.3rem 0 var(--key-shadow);
+    transform: translateY(0);
+    transition: transform 0.06s, box-shadow 0.06s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  button.op { background: var(--op); color: var(--op-ink); box-shadow: 0 0.3rem 0 var(--op-shadow); }
+  button.fn { font-size: 1.1rem; }
+  button.eq {
+    background: var(--eq);
+    color: var(--eq-ink);
+    box-shadow: 0 0.3rem 0 var(--eq-shadow);
+    grid-row: span 2;
+    height: auto;
+    font-size: 1.7rem;
+  }
+  button.zero { grid-column: span 2; }
+  button:active, button.pressed { transform: translateY(0.3rem); box-shadow: 0 0 0 transparent; }
+  button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { button, .result { transition: none; } }
+  @media (max-width: 360px) {
+    .calc { padding: 1.1rem 0.9rem 1.2rem; }
+    .keys { gap: 0.5rem; }
+    button { height: 3.2rem; font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+  <main class="calc" aria-label="Calculator">
+    <div class="screen">
+      <div class="expr" id="expr" aria-live="polite"></div>
+      <div class="result" id="result" aria-live="polite">0</div>
+    </div>
+    <div class="keys">
+      <button class="op fn" data-action="clear"
